@@ -1,0 +1,26 @@
+<div class="container">
+	<h1>New User</h1>
+	
+	<div class="form-group">
+		<form action="/users" method="post">
+			<input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>"><br>
+			<div class="form-group">
+				<label for="name">Name</label>
+				<input class="form-control" id="name" type="text" name="user[name]"><br>
+			</div>
+
+			<label for="email">Email</label>
+			<input class="form-control" id="email" type="email" name="user[email]"><br>
+
+			<label for="password">Password</label>
+			<input class="form-control" id="password" type="password" name="user[password]"><br>
+
+			<label for="password_confirmation">Password Confirmation</label>
+			<input class="form-control" id="password_confirmation" type="password" name="user[password_confirmation]"><br>
+			<button class="btn btn-primary btn-lg btn-block" type="submit">Join</button>
+		</form>
+
+		<a class="btn btn-link" href="/sessions/new">You already part of the movement?</a>
+	</div>
+
+</div>	

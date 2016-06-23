@@ -1,0 +1,36 @@
+<div class="container">
+ 	
+	<h1>Welcome, <%= @user.name %></h1>
+
+	<div class="form-group">
+		<a class="btn btn-warning" role="button" href="/users/<%= @user.id %>/edit">Edit Profile</a> 
+	</div>
+
+	<div class="form-group">
+		<table class="table table-responsive">
+			<% if @secrets %>
+			  <% @secrets.each do |secret| %>
+			    <p class="lead"><%= secret.content %></p>
+			    <p class="lead"><%= secret.likes.count %> likes</p>
+			    <a class="btn btn-link" role="button" href= "/secrets/<%=secret.id%>" data-method='delete'>Delete</a>
+			  <% end %>
+			<% end %>
+		</table>
+	</div>
+
+	<form action="/secrets" method="post">
+		<div class="form-group">
+			
+				<input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
+				<input type="hidden" name="secret[user_id]" value="<%= @user.id %>"></input>
+
+				<label for="New Secret">Secret</label>
+				<textarea class="form-control" rows="5" cols="50" name="secret[content]" id="New Secret"></textarea>
+			
+		</div>
+
+		<div class="form-group">
+			<input type="submit" class="btn btn-success" value="Post Secret" id='Create Secret'></input>
+		</div>
+	</form>
+</div>

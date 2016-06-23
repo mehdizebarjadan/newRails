@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+  <title>Secret</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+
+  <%= csrf_meta_tags %>
+  
+</head>
+<body>
+
+<div class="container">
+
+   <div class="form-group">
+      <% if flash[:errors] %>
+        <% flash[:errors].each do |e| %>
+          <p class="bg-danger"><%= e %></p>
+        <% end %>
+      <% end %>
+   </div>
+  
+   <div class="form-group">
+     <% if current_user %>
+      <form action='/sessions' method='post'>
+
+        <input type='hidden' name='authenticity_token' value='<%= form_authenticity_token %>'>
+        <input type='hidden' name='_method' value='delete'>
+        <input type='submit' class="btn btn-primary pull-right" value='Log Out'> 
+        
+      </form> 
+     <% end %>
+   </div>
+
+ </form>
+</div>
+
+
+  <%= yield %>
+
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+</body>
+</html>
+
